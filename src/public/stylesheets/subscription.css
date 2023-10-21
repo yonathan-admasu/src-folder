@@ -1,0 +1,51 @@
+.subscription-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,.4);
+  z-index: 10000;
+  display: none;
+}
+
+.subscription-box {
+  border-radius: 10px;
+  background: white;
+  padding: 2em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.subscription-box .close-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 0 0.5em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: 100ms all ease;
+}
+
+.subscription-box .close-button:hover {
+  border: 1px solid gainsboro;
+  color: black;
+}
+
+.subscribe-error {
+  display: none;
+}
+
+.subscription-success {
+  display: none;
+} 
+
+@media screen and (max-width: 576px) {
+  .subscription-box {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

@@ -1,0 +1,19 @@
+<% var qid %>
+<% for (var a = 0; a < faqs.length; a++) { %>
+  <% qid = faqs[a].question.replace(/[\s\.,?]/g, '') %>
+  <div class="faq">
+    <div>
+      <a class="faq-question rllink-primary" data-toggle="collapse" href="#<%= qid %>" aria-expanded="true" aria-controls="">
+        <span class="icon">
+          <%= a + 1  %>
+        </span>
+        <%- faqs[a].question %>
+      </a>
+    </div>
+    <div id="<%= qid %>" class="collapse" role="tabpanel">
+      <div class="card-body faq-answer">
+        <%- faqs[a].answer %>
+      </div>
+    </div>
+  </div>
+<% } %>

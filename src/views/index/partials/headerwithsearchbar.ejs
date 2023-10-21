@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light navbar-header fixed-top">
+  <a class="navbar-brand" href="/home">
+    <img src="/images/logo.png" alt="rulings.law - the free, searchable database of California tentative rulings" title="rulings.law - the free, searchable database of California tentative rulings">
+  </a>
+  <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+    aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavId">
+    <form class="form-inline my-2 my-lg-0 mx-auto nav-search-form" method="GET" action="/home/search/1/20">
+      <div class="form-group with-icon nav-search-cont">
+        <input name="searchtext" id="nav-search-box" class="form-control mr-sm-2" type="text" placeholder="Search rulings by Date, Author, Courthouse, Department">
+        <button class="input-icon btn-submit" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+        <% if (typeof error_msg != 'undefined') {%>
+        <label for="" class="small text-danger error"><%= error_msg %></label>
+        <% } %>
+      </div>
+    </form>
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <i class="fas fa-user-alt"></i>
+          <% if (typeof user != 'undefined') {%>
+            <%= user.isadmin == true ? "Admin :" : "" %>
+            <%= user.firstname + ' ' + user.lastname  %>
+          <% } %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownId">
+          <a class="dropdown-item" href="/home/editprofile">
+            <i class="fas fa-user-edit    "></i>
+            Edit Profile
+          </a>
+          <a class="dropdown-item" href="/home/changepassword">
+            <i class="fas fa-user-lock    "></i>
+            Change Password
+          </a>
+          <a class="dropdown-item" href="/users/logout">
+            <i class="fas fa-user-alt-slash    "></i>
+            Logout
+          </a>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</nav>

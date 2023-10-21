@@ -1,0 +1,52 @@
+.results-container {
+  margin: 1em auto;
+}
+
+.results-container .results-header {
+  padding: 0.25em 1em;
+  font-weight: bold;
+  border-bottom: 1px solid #ced4da;
+  color: white;
+  background: #4272d7;
+}
+
+.results-container .result-entry {
+  padding: 0.25em 1em;
+}
+
+.results-container .result-entry:nth-of-type(even) {
+  background: #f8f9fa;
+}
+
+.results-container span {
+  font-weight: 400;
+  display: inline-block;
+  overflow-wrap: break-word;
+}
+
+.results-container .results-header span {
+  font-weight: 500;
+}
+
+.results-container .entry-number {
+  width: 10%;
+  margin-left: 0.2em;
+}
+
+.results-container .entry-casenumber {
+  width: 25%;
+}
+
+.results-container .entry-date {
+  width: 25%;
+}
+
+.results-container .entry-judge {
+  width: 34%;
+}
+
+@media screen and (max-width: 576px) {
+  .results-container span {
+    width: unset;
+  }
+}

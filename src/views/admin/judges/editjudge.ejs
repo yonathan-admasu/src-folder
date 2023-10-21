@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ("../partials/commonhead") %>
+</head>
+<body>
+  <%- include ("../partials/header") %>
+  <%- include ("../../commonpartials/stbutton") %>
+  <div class="body-container">
+    <%- include ("../partials/sidebar") %>
+    <div class="page-body">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="home-page-heading">Edit Judge</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 mx-auto">
+              <h4 class="form-heading">Edit Judge Information</h4>
+              <%- include ("../partials/messages") %>
+              <form action="/admin/judges/<%= judge._id %>/editjudge" method="POST">
+                <div class="form-group">
+                  <label for="">Name <span class="text-danger">*</span></label>
+                  <input type="text" name="name" id="" class="form-control" required value="<%= judge.name %>">
+                </div>
+                <div class="form-group">
+                  <label for="">Title <span class="text-danger">*</span></label>
+                  <select name="title" id="" class="form-control" value="<%= judge.title %>">
+                    <option value="Judge">Judge</option>
+                    <option value="Commisioner" 
+                    <% if(judge.title == "Commisioner") { %> 
+                      <%= "selected" %>
+                    <% } %>
+                    >Commisioner</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="">Phone <span class="text-danger">*</span></label>
+                  <input type="text" name="phone" id="" class="form-control" required value="<%= judge.phone %>">
+                </div>
+                <button type="submit" class="btn btn-success btn-block mt-2">
+                  <i class="fas fa-save    "></i>
+                  Save Changes
+                </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include ("../partials/footer") %>
+  <%- include ("../partials/commonscripts") %>
+</body>
+</html>
+
+

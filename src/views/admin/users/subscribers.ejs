@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("../partials/commonhead") %>
+</head>
+
+<body>
+  <%- include ("../partials/header") %>
+  <%- include ("../../commonpartials/stbutton") %>
+  <div class="body-container">
+    <%- include ("../partials/sidebar") %>
+    <div class="page-body">
+        <div class="container">
+            <div class="row">
+              <div class="col">
+                <h2 class="home-page-heading">Manage Subscribers</h2>
+                <%- include ("../partials/messages") %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <table class="table table-striped users-table">
+                  <thead class="">
+                    <tr>
+                      <th>#</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Email</th>
+                      <th class="text-center">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <% for (var i = 0; i < subscribers.length; i++) { %>
+                      <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= subscribers[i].firstname %></td>
+                        <td><%= subscribers[i].lastname %></td>
+                        <td><%= subscribers[i].email %></td>
+                        <td class="text-center">
+                          <a href="" subscriber="<%= subscribers[i]._id %>" class="text-danger btn-userdelete">
+                            <i class="fas fa-trash"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+  <%- include ("../partials/footer") %>
+  <%- include ("../partials/commonscripts") %>
+
+  <script>
+    $('.btn-userdelete').click(function (e) { 
+      e.preventDefault();
+      var url = '/admin/subscribers/' + $(this).attr('subscriber') + '/delete'
+      $.ajax({
+        type: "post",
+        url: url,
+        success: function (response) {
+          document.location.reload(true)
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

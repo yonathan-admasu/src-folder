@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("../partials/commonhead") %>
+</head>
+
+<body>
+  <%- include ("../partials/header") %>
+  <%- include ("../../commonpartials/stbutton") %>
+  <div class="body-container">
+    <%- include ("../partials/sidebar") %>
+    <div class="page-body">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="home-page-heading">Edit FAQ Page</h2>
+            <%- include ("../partials/messages") %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-2">
+            <button id="add-question" class="btn rlbtn rlbtn-primary">
+              <i class="fas fa-plus    "></i>
+              Add Question
+            </button>
+          </div>
+        </div>
+        <form action="/admin/pages/faq" method="post">
+        <div class="row">
+          <div class="col questions-section">
+            <% for (var i = 0; i < faqs.length; i++) { %>
+            <div class="card admin-card">
+              <div class="card-header">
+                <span>
+                  Question #
+                  <%= i + 1 %>
+                </span>
+                  <button type="button" class="btn btn-danger btn-sm ml-auto btn-delete" action="/admin/pages/faq/<%= faqs[i]._id %>/deletefaq">Delete</button>
+              </div>
+              <div class="card-body">
+
+                <div class="form-group">
+                  <input type="text" name="question" class="form-control" placeholder="Question" required value="<%= faqs[i].question %>">
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" name="answer" id="" rows="3" required><%= faqs[i].answer %></textarea>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <button type="submit" class="btn btn-success">
+              <i class="fas fa-save    "></i>
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  <%- include ("../partials/footer") %>
+  <%- include ("../partials/commonscripts") %>
+  <script>
+    $('#add-question').click(function (e) {
+      var qno = $('.admin-card').length + 1;
+      e.preventDefault();
+      content = '<div class="card admin-card"><div class="card-header">Question # ' + qno +
+        '</div><div class="card-body"><div class="form-group"><input required type="text" name="question" class="form-control" placeholder="Question" value=""></div><div class="form-group"><textarea class="form-control" name="answer" id="" rows="3" required></textarea></div></div></div>'
+      $('.questions-section').append(content);
+      $('.admin-card:last-of-type .card-body .form-group:first-of-type input').focus();
+    });
+
+    $('.btn-delete').click(function (e) { 
+      e.preventDefault();
+      var url = $(this).attr('action');
+      $.ajax({
+        type: "post",
+        url: url,
+        success: function (response) {
+          // console.log('Deleted');
+          document.location.reload(true)
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

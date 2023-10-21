@@ -1,0 +1,312 @@
+/* Font Import */
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,500,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600,700,800');
+
+/* Overall  */
+html{
+  scroll-behavior: smooth;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  font-family: 'Opan Sans', 'Poppins', 'Muli', 'Roboto';
+  color: #343a40;
+  /* font-weight: 400; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+mark {
+  background: yellow !important;
+}
+
+/* Welcome Pages */
+
+.welcome-logo {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.welcome-body-container {
+  margin-top: 2em;
+  margin-bottom: 4em;
+}
+
+.body-container .page-body {
+  margin-top: 105px;
+  margin-left: 330px;
+  margin-bottom: 5em;
+  padding: 2em 2em 0 2em;
+}
+
+/* Typography */
+.home-page-heading {
+  margin-bottom: 1rem;
+}
+
+.home-page-heading:after {
+  content: '';
+  height: 2px;
+  /* width: 100px; */
+  background: #3868cd;
+  display: block;
+  /* margin-top: 0.5em; */
+}
+
+/* Colors */
+.bg-blue {
+  background: #2c6ed5;
+}
+
+.bg-red {
+  background: #fa4251;
+}
+
+/* Buttons and Links */
+.rlbtn {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.rlbtn:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.rlbtn-success {
+  background: #57b846;
+  color: white;
+}
+
+.rlbtn-success:hover {
+  background: #4dae3c;
+  color: white;
+}
+
+.rlbtn-primary {
+  background: #4272d7;
+  color: white;
+}
+
+.rlbtn-primary:hover {
+  background: #3868cd;
+  color: white;
+}
+
+.rllink-primary {
+  font-weight: 500;
+  color: #3868CD;
+}
+
+.rllink-primary:hover {
+  text-decoration: none;
+  color: #2FA4E7;
+}
+
+.rllink-primary:visited {
+  color: purple;
+}
+
+.rltext-primary {
+  color: #3868CD;
+}
+
+/* Forms */
+
+.form-group label {
+  margin-bottom: 0.2em;
+}
+
+.form-group.with-icon {
+  position: relative;
+}
+
+.form-group.with-icon .input-icon {
+  position: absolute;
+  top: 39px;
+  right: 13px;
+  color: #343a40ba;
+  font-size: 0.9em;
+  pointer-events: none;
+}
+
+.form-group.with-icon input, .form-group.with-icon textarea {
+  padding: 1.275rem 0.75rem;
+  padding-right: 2em;
+  transition: 200ms all ease-in;
+}
+
+.form-group.with-icon input.filled, .form-group.with-icon textarea.filled {
+  border-color: #3868CD;
+}
+
+.form-group.with-icon input:hover, .form-group.with-icon textarea:hover {
+  border-color: #3868CD;
+}
+
+.form-group.with-icon input:focus, .form-group.with-icon textarea:focus {
+  border-color: #3868CD;
+  -webkit-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+}
+
+.form-group.with-icon button.input-icon {
+  border: none;
+  background: transparent;
+  top: 13px;
+  font-size: 1em;
+}
+
+.form-group.with-icon button.input-icon:focus {
+  outline: none;
+}
+
+.form-group.with-icon button.input-icon:hover {
+  color: #3868CD;
+}
+
+/* Advance Search Form */
+.advsearch-form .advsearch-fg {
+  margin-bottom: 1em;
+}
+
+.advsearch-form .advsearch-fg:last-of-type {
+  margin-bottom: 2em;
+}
+
+.advsearch-form .advsearch-fg label {
+  font-size: 0.8em;
+  font-weight: 400;
+  margin-left: 0.5em;
+}
+
+.advsearch-form .advsearch-fg .advsearch-select {
+  cursor: pointer;
+  /* transition: 50ms all ease-in; */
+  background: none;
+  border: none;
+  border-bottom: 1px solid #ced4da;
+  /* padding: 0.375rem 0.2rem; */
+  font-size: 0.9em;
+}
+
+.advsearch-form .advsearch-fg input[type="text"] {
+  cursor: text;
+}
+
+.advsearch-form .advsearch-fg select.advsearch-select{
+  -webkit-appearance: none;
+  appearance: none;
+  background: url('/images/arrowdown.png') no-repeat right transparent;
+  background-size: 6%;
+}
+
+.advsearch-form .advsearch-fg select.advsearch-select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+.advsearch-form .advsearch-fg select.advsearch-select::-ms-expand {
+  display: none;
+}
+
+.advsearch-form .advsearch-fg select.advsearch-select option:not(:checked) {
+  /* // prevent <option>s from becoming transparent as well */
+  color: black;
+}
+
+.advsearch-form .advsearch-fg .advsearch-select:focus,
+.advsearch-form .advsearch-fg .advsearch-select:active {
+  box-shadow: none;
+}
+
+.advsearch-form .advsearch-fg .advsearch-select:hover,
+.advsearch-form .advsearch-fg .advsearch-select:focus {
+  border-color: #3868CD;
+  /* border-width: 1px; */
+}
+
+.advsearch-form .advsearch-btn {
+  font-weight: 500;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+}
+
+.advsearch-form .buttons {
+  text-align: center;
+}
+
+/* Scroll to top button */
+.st-button {
+  display: none;
+  position: fixed;
+  bottom: 45px;
+  right: 20px;
+  z-index: 99;
+  background-color: #3868CD;
+  color: white;
+  cursor: pointer;
+  /* padding: 2px 15px; */
+  border-radius: 50%;
+  font-size: 28px;
+  border: 2px solid white;
+  transition: 200ms all ease;
+  width: 40px;
+  height: 40px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.st-button:hover {
+  color: #3868CD;
+  background: white;
+  border: 2px solid #3868CD;
+}
+
+/* Scroll Bar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media screen and (max-width: 576px) {
+  .body-container .page-body {
+    margin-left: 0;
+    padding: 1em 0 0 0;
+  }
+
+  .home-page-heading {
+    font-size: 1.5rem;
+  }
+}

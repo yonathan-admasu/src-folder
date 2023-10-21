@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("../commonpartials/commonhead") %>
+  <!-- <link rel="stylesheet" href="/stylesheets/contactus.css"> -->
+</head>
+
+<body>
+  <div class="body-container welcome-body-container container">
+    <div class="row">
+      <div class="col-sm-6 m-auto text-center">
+        <h1>
+          <a href="/" class="rllink-primary">
+            <img src="/images/logo.png" alt="rulings.law - the free, searchable database of California tentative rulings"
+              class="welcome-logo" title="rulings.law - the free, searchable database of California tentative rulings">
+          </a>
+        </h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col text-center">
+        <h1 class="text-center mb-2 rltext-primary mt-2">Contact Us</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10 mx-auto">
+        <p class="text-center mb-4">Simply complete the form below and we’ll get back to you shortly.</p>
+        <%- include ("../commonpartials/messages") %>
+        <form action="/contactus" method="POST">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4">
+                <input name="userid" type="text" class="d-none" value="<%= typeof user != 'undefined' ? user._id : '' %>">
+                <div class="form-group with-icon">
+                  <label for="fname">Name</label>
+                  <input required type="name" id="name" name="name" class="form-control" value="<%= typeof name != 'undefined' ? name : '' %>">
+                  <i class="fas fa-user input-icon"></i>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group with-icon">
+                  <label for="email">Email</label>
+                  <input required type="email" id="email" name="email" class="form-control" value="<%= typeof email != 'undefined' ? email : '' %>">
+                  <i class="fas fa-envelope input-icon"></i>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group with-icon">
+                  <label for="subject">Subject</label>
+                  <input required type="text" id="subject" name="subject" class="form-control" value="<%= typeof subject != 'undefined' ? subject : '' %>">
+                  <!-- <i class="fas fa-envelope input-icon"></i> -->
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group with-icon">
+                  <label for="message">Message</label>
+                  <textarea required name="message" rows="7" class="form-control"><%= typeof message != 'undefined' ? message : '' %></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col text-center">
+                <button id="contact-send-button" class="btn rlbtn rlbtn-primary" type="submit">SEND</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <%- include ("partials/footer") %>
+  <%- include ("../commonpartials/commonscripts") %>
+</body>
+
+</html>

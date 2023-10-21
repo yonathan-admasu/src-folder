@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ("../partials/commonhead") %>
+</head>
+<body>
+  <%- include ("../partials/header") %>
+  <%- include ("../../commonpartials/stbutton") %>
+  <div class="body-container">
+    <%- include ("../partials/sidebar") %>
+    <div class="page-body">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1 class="page-heading">
+              Ruling Content
+            </h1>
+            <hr>
+            <div class="row">
+              <div class="col-md-6">
+                <p><strong class="mr-3">Hearing Date: </strong>
+                  <%= ruling.date %>
+                </p>
+                <p><strong class="mr-3">Judge: </strong>
+                  <%= ruling.judge.name %>
+                </p>
+                <p><strong class="mr-3">Courthouse: </strong>
+                  <%= ruling.department.courthouse.name %>
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p><strong class="mr-3">Department: </strong>
+                  <%= ruling.department.name %>
+                </p>
+                <p><strong class="mr-3">Verified: </strong>
+                  <%= ruling.verified %>
+                </p>
+              </div>
+            </div>
+            <hr>
+            <%- include ("../partials/messages") %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-sm-6 mx-auto">
+            <a href="/admin/rulings/<%= ruling.id %>/edit" class="btn btn-success my-2 main-page-buttons">
+              <i class="fas fa-edit"></i>
+              Edit
+            </a>
+          </div>
+          <div class="col-md-3 col-sm-6 mx-auto">
+            <form action="/admin/rulings/<%= ruling._id %>/delete" method="POST">
+              <button type='submit' class="btn btn-danger my-2 main-page-buttons">
+                <i class="fas fa-trash"></i>
+                Delete Ruling
+              </button>
+            </form>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col Print">
+            <%- ruling.content %>
+          </div>
+        </div>
+        <div class="row my-3">
+          <div class="col text-center">
+            <button onclick="window.history.back()" class="btn btn-success px-5 back-button"><i class="fas fa-arrow-circle-left"></i>&nbsp; Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include ("../partials/footer") %>
+  <%- include ("../partials/commonscripts") %>
+</body>
+</html>
+
+

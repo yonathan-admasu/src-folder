@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <%- include ("partials/commonhead") %>
+</head>
+<body>
+  <%- include ("partials/header") %>
+  <%- include ("../commonpartials/stbutton") %>
+  <div class="body-container">
+    <%- include ("partials/sidebar") %>
+    <div class="page-body">
+      <div class="container">
+        <div class="row mb-3">
+          <div class="col">
+            <h2 class="home-page-heading">Database Stats</h2>
+          </div>
+        </div>  
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card admin-card">
+                <div class="card-header">
+                  <h5>Number of Counties:</h5>
+                </div>
+                <div class="card-body">
+                  <blockquote class="blockquote ml-4 font-weight-bold"><%= counties %></blockquote>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card admin-card">
+                <div class="card-header">
+                  <h5>Number of Judges:</h5>
+                </div>
+                <div class="card-body">
+                  <blockquote class="blockquote ml-4 font-weight-bold"><%= judges %></blockquote>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card admin-card">
+                <div class="card-header">
+                  <h5>Number of Counthouses:</h5>
+                </div>
+                <div class="card-body">
+                  <blockquote class="blockquote ml-4 font-weight-bold"><%= courthouses %></blockquote>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card admin-card">
+                <div class="card-header">
+                  <h5>Number of Departments:</h5>
+                </div>
+                <div class="card-body">
+                  <blockquote class="blockquote ml-4 font-weight-bold"><%= departments %></blockquote>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card admin-card">
+                <div class="card-header">
+                  <h5>Number of Rulings:</h5>
+                </div>
+                <div class="card-body">
+                  <blockquote class="blockquote ml-4 font-weight-bold"><%= rulings %></blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row my-3">
+            <div class="col text-center">
+              <a href="/admin" class="btn btn-success px-5 back-button"><i class="fas fa-arrow-circle-left"></i>&nbsp; Back</a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <%- include ("partials/footer") %>
+  <%- include ("partials/commonscripts") %>
+</body>
+</html>

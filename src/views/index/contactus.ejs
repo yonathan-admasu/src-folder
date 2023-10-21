@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>rulings.law - Contact Us</title>
+    <%- include ("../commonpartials/commonhead") %>
+    <!-- <link rel="stylesheet" href="/stylesheets/contactus.css">  -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+  <body>    
+    <div class="body-container">
+      <%- include ("partials/header") %>
+      <%- include ("partials/sidebar") %>
+      <%- include ("../commonpartials/stbutton") %>
+      <div class="page-body home-page">
+        <%- include ("partials/ganavbarad") %>
+        <div class="container my-2">
+          <div class="row">
+            <div class="col">
+              <h2 class="home-page-heading">Contact Us</h2>
+            </div>
+          </div>
+          
+          
+    <div class="row">
+      <div class="col-md-10 mx-auto">
+        <p class="text-center mb-4">Simply complete the form below and we’ll get back to you shortly.</p>
+        <%- include  ("../commonpartials/messages") %>
+        <form action="/contactus" method="POST" id="contact-form">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group with-icon">
+                  <label for="fname">Name</label>
+                  <input required type="name" id="name" name="name" class="form-control" value="<%= typeof name != 'undefined' ? name : '' %>">
+                  <i class="fas fa-user input-icon"></i>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group with-icon">
+                  <label for="email">Email</label>
+                  <input required type="email" id="email" name="email" class="form-control" value="<%= typeof email != 'undefined' ? email : '' %>">
+                  <i class="fas fa-envelope input-icon"></i>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group with-icon">
+                  <label for="subject">Subject</label>
+                  <input required type="text" id="subject" name="subject" class="form-control" value="<%= typeof subject != 'undefined' ? subject : '' %>">
+                  <!-- <i class="fas fa-envelope input-icon"></i> -->
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group with-icon">
+                  <label for="message">Message</label>
+                  <textarea required name="message" rows="7" class="form-control"><%= typeof message != 'undefined' ? message : '' %></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="g-recaptcha" data-sitekey="6Ldav74ZAAAAAE_EX307Oxw4oTKhfAOMjEww0PFj"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col text-center">
+                <!-- <button id="contact-send-button" class="btn rlbtn rlbtn-primary" type="submit">
+                  SEND
+                </button> -->
+                <input type="submit" value="Send" id="contact-send-button" class="btn rlbtn rlbtn-primary">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+        </div>
+        <%- include ("partials/gafooterad") %>
+      </div>
+    </div>
+    <%- include ("partials/footer") %>
+    <%- include ("../commonpartials/commonscripts") %>
+  </body>
+</html>

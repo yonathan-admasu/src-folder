@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("../partials/commonhead") %>
+  </head>
+
+  <body>
+    <%- include ("../partials/header") %> <%- include ("../../commonpartials/stbutton") %>
+    <div class="body-container">
+      <%- include ("../partials/sidebar") %>
+      <div class="page-body">
+        <% let count = 0 %>
+        <div class="container body-container">
+          <div class="row">
+            <div class="col">
+              <h2 class="home-page-heading">Courthouses</h2>
+              <%- include ("../partials/messages") %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <a
+                href="/admin/courthouses/addcourthouse"
+                class="btn btn-primary my-2 main-page-buttons"
+                id="btn-addcourthouse"
+              >
+                <i class="fas fa-plus-circle"></i>
+                Add Courthouse
+              </a>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col">
+              <% for (var a=0; a< courthouses.length; a++) { %> <% if (courthouses[a].name) { %>
+              <h5 class="d-inline"><%= courthouses[a].name %> Courthouse</h5>
+              <p class="d-inline small">(<%= courthouses[a].address %>)</p>
+
+              <form
+                action="/admin/courthouses/<%= courthouses[a].id %>/deletecourthouse"
+                method="POST"
+                class="d-inline"
+              >
+                <button type="submit" class="text-danger mr-1 dep-delete-btn">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
+
+              <a href="/admin/courthouses/<%= courthouses[a].id %>/editcourthouse" class="text-primary">
+                <i class="fas fa-edit"></i>
+              </a>
+
+              <div class="row mb-3 mt-2">
+                <% for (var b=0; b < departments.length; b++) { %> <% if (departments[b].courthouse.toString() ==
+                courthouses[a].id) { %>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                  <div class="card mb-1 department-card">
+                    <div class="department-name">
+                      <a
+                        class="text-primary"
+                        style="display: block"
+                        href="/admin/departments/rulings/<%= departments[b]._id %>"
+                      >
+                        <%= departments[b].name %></a
+                      >
+                      <div>
+                        <form
+                          action="/admin/departments/<%= departments[b].id %>/delete"
+                          method="POST"
+                          class="d-inline"
+                        >
+                          <button type="submit" class="text-danger mr-1 dep-delete-btn">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% } %> <% } %>
+              </div>
+              <hr />
+              <% } %> <% } %>
+            </div>
+          </div>
+          <div class="row my-3">
+            <div class="col text-center">
+              <a href="/admin" class="btn btn-success px-5 back-button"
+                ><i class="fas fa-arrow-circle-left"></i>&nbsp; Back</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include ("../partials/footer") %> <%- include ("../partials/commonscripts") %>
+  </body>
+</html>

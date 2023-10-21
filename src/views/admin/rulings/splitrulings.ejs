@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("../partials/commonhead") %>
+</head>
+
+<body>
+  <%- include ("../partials/header") %>
+  <%- include ("../../commonpartials/stbutton") %>
+  <div class="body-container">
+    <%- include ("../partials/sidebar") %>
+    <div class="page-body">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="home-page-heading">Split Rulings</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="splitter-container">
+              <div class="left">
+                <p class="mb-4 mt-2">Judge: <strong><%= ruling.judge.name %></strong></p>
+                <p class="mb-4">Courthouse: <strong><%= ruling.department.courthouse.name %></strong></p>
+                <p class="mb-1">Department: <strong><%= ruling.department.name %></strong></p>
+                <br>
+                <p class="text-center mb-0"><strong>Case Numbers:</strong></p>
+                <div class="select-box">
+                  <select multiple class="form-control" name="" id="rulingcasenumbers">
+                    <% for (var i = 0; i < ruling.casenumbers.length; i++) { %>
+                    <option value="<%= ruling.casenumbers[i] %>"><%= ruling.casenumbers[i] %></option>
+                    <% } %>
+                  </select>
+                  <span>
+                    <button class="btn btn-info btn-right btn-move mb-3" data-target=".right">
+                      <i class="fas fa-chevron-right    "></i>
+                    </button>
+                    <br>
+                    <button class="btn btn-info btn-left btn-move" data-target=".left">
+                      <i class="fas fa-chevron-left    "></i>
+                    </button>
+
+                  </span>
+                </div>
+              </div>
+              <div class="right bg-light">
+                  <select name="judge" id="select-judges" class="form-control select-judges mb-2">
+                    <option value="">Select Judge</option>
+                    <% for (let i=0; i < judges.length; i++) { %>
+                    <% if (judges[i].name != "Unassigned") { %>
+                    <option value="<%= judges[i]._id %>"><%= judges[i].name %></option>
+                    <% } %>
+                    <% } %>
+                  </select>
+                  <select name="courthouse" id="select-courthouses" class="form-control select-courthouses mb-2">
+                    <option value="">Select Courthouse</option>
+                    <% for (var a = 0; a < courthouses.length; a++) { %>
+                    <option value="<%= courthouses[a]._id %>"><%= courthouses[a].name %></option>
+                    <% } %>
+                  </select>
+                  <select name="department" id="select-departments" class="form-control select-departments mb-4">
+                    <option value="">Select Department</option>
+                  </select>
+  
+                  <p class="text-center mb-0"><strong>Case Numbers:</strong></p>
+                  <div class="select-box">
+  
+                    <select multiple class="form-control" name="" id="">
+                      
+                    </select>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+              <div class="alert alert-danger fillerror" role="alert">
+                  <small></small>
+              </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col text-center">
+            <button class="btn btn-success submit-button">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include ("../partials/footer") %>
+  <%- include ("../partials/commonscripts") %>
+</body>
+
+</html>
+
+<script>
+  let ruling = eval(<%- JSON.stringify(ruling) %>)
+  let courthouses = eval(<%- JSON.stringify(courthouses) %>)
+  let departments = eval(<%- JSON.stringify(departments) %>)
+
+  $('.select-courthouses').change(function () {
+    $('.select-departments').html('')
+    $('.select-departments').append('<option value="">Select Department</option>')
+    for (let i = 0; i < departments.length; i++) {
+      if (departments[i].courthouse.toString() == $(this).val()) {
+        $('.select-departments').append('<option value="' + departments[i]._id + '">' + departments[
+            i].name +
+          '</option>')
+      }
+    }
+  })
+
+  $('.btn-left').click(function (e) { 
+    e.preventDefault();
+    addRemoveCasesLeft();
+  });
+
+  $('.btn-right').click(function (e) { 
+    e.preventDefault();
+    if(!isFilled()) {
+      $('.fillerror small').text('Please Choose Case Number, Judge, Courthouse and Department first')
+      showHideFillError();
+    } else {
+      addRemoveCasesRight();
+    }
+  });
+
+  $('.submit-button').click(function (e) { 
+    e.preventDefault();
+    if (validateForm() == true) {
+      console.log('validated');
+      submitForm();
+    }
+  });
+
+  function submitForm() {
+    var postURL = '/admin/rulings/' + ruling._id + '/split'
+    $('.left .select-box select option').prop('selected', true);
+    $('.right .select-box select option').prop('selected', true);
+
+    var data = {
+      judge1: ruling.judge._id,
+      courthouse1: ruling.department.courthouse._id,
+      department1: ruling.department._id,
+      casenumbers1: $('.left .select-box select').val(),
+      judge2: $('.right .select-judges').val(),
+      courthouse2: $('.right .select-courthouses').val(),
+      department2: $('.right .select-departments').val(),
+      casenumbers2: $('.right .select-box select').val()
+    }
+
+    $.ajax({
+      type: "POST",
+      url: postURL,
+      data: data,
+      dataType: "json"
+    }).done(function(response) {
+      console.log(response);
+      window.location.href = '/admin/courthouses';
+    }).fail(function (err) {
+      var error = err.responseJSON.error;
+      $('.fillerror small').text(error);
+      showHideFillError();
+    })
+  }
+
+  function validateForm() {
+    var judge = $('.select-judges').val();
+    var department = $('.select-departments').val();
+    var caseNumbersLeft = $('.left .select-box select option');
+    var caseNumbersRight = $('.right .select-box select option');
+
+    if (judge == ruling.judge._id || department == ruling.department._id ) {
+      $('.fillerror small').text('Judges and Departments on both sides must not be the same')
+      showHideFillError();
+      return false;
+    } else if (caseNumbersLeft.length == 0 || caseNumbersRight.length == 0) {
+      $('.fillerror small').text('Please Split cases')
+      showHideFillError();
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function addRemoveCasesRight() {
+    var caseNumbers = $('.left .select-box select').val();
+    for (let i = 0; i < caseNumbers.length; i++) {
+      $('.left .select-box select ' + 'option[value="' + caseNumbers[i] + '"]').remove();
+      $('.right .select-box select').append('<option value="'+ caseNumbers[i] +'">' + caseNumbers[i] + '</option>')
+    }
+  }
+
+  function addRemoveCasesLeft() {
+    var caseNumbers = $('.right .select-box select').val();
+    for (let i = 0; i < caseNumbers.length; i++) {
+      $('.right .select-box select ' + 'option[value="' + caseNumbers[i] + '"]').remove();
+      $('.left .select-box select').append('<option value="'+ caseNumbers[i] +'">' + caseNumbers[i] + '</option>')
+    }
+  }
+
+  function isFilled() {
+    var judgesVal = $('.select-judges').val()
+    var courthousesVal = $('.select-courthouses').val()
+    var departmentsVal = $('.select-departments').val()
+    var caseNumbers = $('.left .select-box select').val();
+
+    if(judgesVal == '' || courthousesVal == '' || departmentsVal == '' || caseNumbers.length == 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function showHideFillError() {
+    $('.fillerror').fadeIn(2000, function () {
+      $('.fillerror').fadeOut(5000)
+    });
+  }
+</script>

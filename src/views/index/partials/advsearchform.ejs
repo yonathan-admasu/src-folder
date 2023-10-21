@@ -1,0 +1,101 @@
+<form action="/rulings" method="GET" class="advsearch-form mb-3">
+  <div class="fields">
+    <div class="form-group advsearch-fg">
+      <input
+        name="searchtext"
+        id="advsearch-text"
+        type="text"
+        class="form-control advsearch-select"
+        placeholder="Keyword"
+      />
+    </div>
+
+    <div class="form-group advsearch-fg">
+      <!-- <label for=""><strong>Judge:</strong></label> -->
+      <select name="county" id="advsearch-judge" class="form-control advsearch-select">
+        <option value="">All Counties</option>
+        <% if (typeof searchdata != 'undefined') { %> <% for (var i = 0; i < searchdata.counties.length; i++) { %>
+        <option value="<%= searchdata.counties[i].id %>"><%= searchdata.counties[i].name %></option>
+        <% } %> <% } %>
+      </select>
+    </div>
+
+    <div class="form-group advsearch-fg">
+      <!-- <label for=""><strong>Judge:</strong></label> -->
+      <select name="judge" id="advsearch-judge" class="form-control advsearch-select">
+        <option value="">All Judges</option>
+        <% if (typeof searchdata != 'undefined') { %> <% for (var i = 0; i < searchdata.judges.length; i++) { %>
+        <option value="<%= searchdata.judges[i].id %>"><%= searchdata.judges[i].name %></option>
+        <% } %> <% } %>
+      </select>
+    </div>
+
+    <div class="form-group advsearch-fg">
+      <select name="year" id="advsearch-year" class="form-control advsearch-select">
+        <option value="">All Years</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2021">2022</option>
+        <option value="2021">2023</option>
+      </select>
+    </div>
+
+    <div class="form-group advsearch-fg">
+      <select name="month" id="advsearch-month" class="form-control advsearch-select">
+        <option value="">All Months</option>
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+
+    <div class="form-group advsearch-fg">
+      <input
+        name="casenumber"
+        id="advsearch-casenumber"
+        type="text"
+        class="form-control advsearch-select"
+        placeholder="Case Number"
+      />
+    </div>
+
+    <input name="limit" type="text" class="d-none" value="20" />
+    <input name="page" type="text" class="d-none" value="1" />
+  </div>
+
+  <div class="buttons">
+    <button type="submit" class="btn rlbtn rlbtn-primary advsearch-btn">
+      <i class="fas fa-search mr-2"></i> Search
+    </button>
+    <button type="button" class="btn btn-outline-dark advsearch-btn btn-reset">
+      <i class="fas fa-recycle"></i> Reset
+    </button>
+  </div>
+</form>
+
+<hr />
+
+<div class="advsearch-form">
+  <div class="form-group advsearch-fg mb-3">
+    <select name="judgeProfile" id="advsearch-judge-profile" class="form-control advsearch-select" required>
+      <option value="">Select Judge</option>
+      <% if (typeof searchdata != 'undefined') { %> <% for (var i = 0; i < searchdata.judgeProfiles.length; i++) { %>
+      <option value="<%= searchdata.judgeProfiles[i].slug %>"><%= searchdata.judgeProfiles[i].judge.name %></option>
+      <% } %> <% } %>
+    </select>
+  </div>
+  <a href="#" class="btn rlbtn rlbtn-primary advsearch-btn btn-block" id="btn-get-judge-profile">
+    <i class="fas fa-id-card mr-2"></i>
+    &nbsp; Judicial Profile
+  </a>
+</div>

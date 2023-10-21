@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>rulings.law - Superior Court of California Tentative Rulings Database</title>
+  <%- include ("../commonpartials/commonhead") %>
+  <link rel="stylesheet" href="/stylesheets/home.css">
+</head>
+
+<body>
+  <div class="body-container">
+    <%- include ("partials/header") %>
+    <%- include ("partials/sidebar") %>
+    <%- include ("../commonpartials/stbutton") %>
+    <div class="page-body home-page">
+      <div class="container my-2">
+        <!-- Logo Row -->
+        <div class="row">
+          <div class="col">
+            <h1 class="display-4 home-heading text-center">
+              <%= staticcontent.welcome %>
+              <img src="/images/logo.png"
+                alt="rulings.law - the free, searchable database of California tentative rulings"
+                class="home-page-logo mb-4 d-block mx-auto"
+                title="rulings.law - the free, searchable database of California tentative rulings">
+            </h1>
+          </div>
+        </div>
+        <!-- Featured Row -->
+        <div class="row">
+          <div class="col">
+            <section id="featured-section">
+              <div class="featured-title featured-link">
+                FEATURED ON
+              </div>
+              <div class="featured">
+                <a href="https://abovethelaw.com/career-files/promoting-access-to-justice-through-tentative-rulings-in-california/"
+                  class="featured-link" target="_blank">
+                  <img src="/images/featured/abovethelaw.png" alt="Above the Law" class="featured-image"
+                    title="Featured on Above the Law">
+                </a>
+                <!-- <a href="https://www.forbes.com/sites/maryjuetten/2019/06/27/leveling-the-legal-playing-field-for-free/" class="featured-link" target="_blank"> -->
+                <!-- <img src="/images/featured/forbes.png" alt="Forbes" class="featured-image" style="height: 40px;"> -->
+                <!-- </a> -->
+                <a href="https://www.geeklawblog.com/2019/04/stephen-embry-the-passion-behind-legal-blogging.html"
+                  class="featured-link" target="_blank">
+                  <img src="/images/featured/geeklawblog.png" alt="Geek Law Blog" class="featured-image"
+                    title="Featured on Geek Law Blog">
+                </a>
+                <a href=" https://www.reinventingprofessionals.com/promoting-access-to-justice-through-tentative-rulings-in-california/"
+                  class="featured-link" target="_blank">
+                  <img src="/images/featured/reinventingprofessionals.png" alt="Reinventing Professionals"
+                    class="featured-image" style="height: 90px;" title="Featured on Reinventing Professionals">
+                </a>
+                <a href=" https://tlpodcast.com/episode-21-dave-rogers-on-hype-technology-and-its-impact-on-innovation/"
+                  class="featured-link" target="_blank">
+                  <img src="/images/featured/technicallylegal.png" alt="Technically Legal" class="featured-image"
+                    style="height:28px" title="Featured on Technically Legal">
+                </a>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!-- Text Row -->
+        <div class="row">
+          <div class="col-md-10 mx-auto">
+            <%- staticcontent.text %>
+          </div>
+        </div>
+        <div class="row d-block d-sm-none">
+          <div class="col-md-6 mx-auto">
+            <div class="home-form">
+              <%- include ("partials/advsearchform") %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+    <%- include ("partials/footer") %>
+    <%- include ("../commonpartials/commonscripts") %>
+</body>
+
+</html>

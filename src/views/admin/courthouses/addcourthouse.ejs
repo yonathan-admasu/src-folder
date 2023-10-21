@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ("../partials/commonhead") %>
+</head>
+<body>
+  <%- include ("../partials/header") %>
+  <%- include ("../../commonpartials/stbutton") %>
+  <div class="body-container">
+    <%- include ("../partials/sidebar") %>
+    <div class="page-body">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+              <h2 class="home-page-heading">Add Courthouse</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5 mx-auto">
+              <h4 class="form-heading">Enter Courthouse Information:</h4>
+              
+              <%- include ("../partials/messages") %>
+              
+              <form action="/admin/courthouses/addcourthouse" method="POST">
+                <div class="form-group">
+                  <label for="name">Courthouse Name <span class="text-danger">*</span></label>
+                  <input id="name" type="text" name="name" class="form-control" placeholder="eg. Stanley Mosk" required
+                    value="<%= typeof courthouse != 'undefined' ? courthouse.name : '' %>"
+                  >
+                  <span class="small text-success ml-2">Do not write 'Courthouse' after the name</span>
+                </div>
+                <div class="form-group">
+                  <label for="address">Address</label>
+                  <input type="text" name="address" id="address" class="form-control" placeholder="eg. (310) 111 North Hill Street, Los Angeles, CA 90012"
+                    value = "<%= typeof courthouse != 'undefined' ? courthouse.address : '' %>"
+                  >
+                </div>
+                <div class="form-group">
+                  <label for="county">County <span class="text-danger">*</span></label>
+                  <select name="county" id="county" required class="form-control">
+                    <% for (var i = 0; i < counties.length; i++) { %>
+                      <option value="<%= counties[i].id %>"><%= counties[i].name %></option>
+                    <% } %>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-success btn-block mt-2">
+                  <i class="fas fa-plus-circle    "></i>
+                  Add Courthouse
+                </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include ("../partials/footer") %>
+  <%- include ("../partials/commonscripts") %>
+</body>
+</html>
+
+

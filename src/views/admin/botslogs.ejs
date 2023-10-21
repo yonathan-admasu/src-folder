@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("partials/commonhead") %>
+</head>
+
+<body>
+  <div class="body-container">
+    <%- include ("partials/header") %>
+    <%- include ("../commonpartials/stbutton") %>
+    <div class="page-body">
+        <%- include ("partials/sidebar") %>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="home-page-heading mb-3">Bots Logs</h2>
+            <%- include ("partials/messages") %>
+            <table class="table table-borderless table-sm">
+              <colgroup>
+                <col width="15%">
+                <col width="30%">
+                <col width="45%">
+                <col width="10%">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Date Time</th>
+                  <th>Bot</th>
+                  <th>Log Text</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (var i = 0; i < logs.length; i++) { %>
+                  <tr>
+                    <td class="dateandtime"><%= logs[i].createdAt %></td>
+                    <td><%= logs[i].scraperName %></td>
+                    <td><%= logs[i].logText %></td>
+                    <td><%= logs[i].logType %></td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col text-center">
+            <a href="/admin" class="btn btn-success px-5 back-button"><i class="fas fa-arrow-circle-left"></i>&nbsp;
+              Back</a>
+            <form action="/admin/botslogs/clearlogs" method="post" style="display: inline;">
+              <button type="submit" class="btn btn-danger px-5 back-button"><i class="fas fa-trash    "></i>&nbsp;
+                Clear Logs</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include ("partials/footer") %>
+  <%- include ("partials/commonscripts") %>
+  
+  <script src="/javascripts/moment.min.js"></script>
+  <script>
+    $('td.dateandtime').each(function(i, elm) {
+      $(this).text(moment($(this).text()).format('MM/DD/YYYY H:mm:ss'))
+    })
+  </script>
+</body>
+</html>

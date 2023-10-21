@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>rulings.law - Tentative Ruling <%= ruling.caseNumber %> - <%= ruling.date %></title>
+    <%- include ("../commonpartials/commonhead") %>
+    <link rel="stylesheet" href="/stylesheets/ruling.css">
+  </head>
+  <body>
+    <div class="body-container">
+      <%- include ("partials/header") %>
+      <%- include ("partials/sidebar") %>
+      <%- include ("../commonpartials/stbutton") %>
+      <div class="page-body serveruling-page">
+        <div class="container">
+          
+          <div class="row">
+            <div class="col mx-auto">
+              
+            </div>
+          </div>
+
+          <div class="row my-5">
+            <div class="col-md-2 text-center d-none d-md-block">
+              
+            </div>
+
+            <div class="col-md-8">
+              <div class="ruling-content">
+                <%- ruling.content  %>
+              </div>
+            </div>
+
+            <div class="col-md-2 text-center d-none d-md-block">
+              
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col mx-auto">
+
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <%- include ("partials/footer") %>
+    <%- include ("../commonpartials/commonscripts") %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
+    <script>
+      var searchtext = '<%- searchtext %>';
+      console.log(searchtext);
+      var context = document.querySelector(".ruling-content");
+      var multipleTerms = false;
+      var instance = new Mark(context);
+      if (searchtext.match(/".*?"/gi)) multipleTerms = true;
+      if (multipleTerms) {
+        // console.log('Multiple Terms')
+        var multipleTermsRaw = searchtext.match(/".*?"/gi);
+        for (let i = 0; i < multipleTermsRaw.length; i++) {
+          var options = {accuracy: {
+            "value": "exactly",
+            "limiters": [",", ".", "(", ")", "-", '"', "'"]
+          } , separateWordSearch: false}
+          instance.mark(multipleTermsRaw[i].slice(1, multipleTermsRaw[i].length - 1), options);
+        }
+        // console.log(multipleTerms)
+      } else {
+        console.log('Single Term')
+        var options = {accuracy: {
+            "value": "exactly",
+            "limiters": [",", ".", "(", ")", "-", '"', "'"]
+          }, separateWordSearch: false}
+        instance.mark(searchtext, options);
+      }
+    </script>
+  </body>
+</html>

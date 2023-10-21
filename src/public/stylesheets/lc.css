@@ -1,0 +1,96 @@
+/* Frequently Asked Questions */
+.faq {
+  padding: 1em 1em 1em 0;
+  border-bottom: 1px dashed #ced4da;
+}
+
+.faq-question {
+  font-weight: normal;
+  color: #343a40;
+  font-style: italic;
+}
+
+.faq-question .icon {
+  border-radius: 50%;
+  background: #3868CD;
+  color: white;
+  margin-right: 1em;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  text-align: center;
+  line-height: 1.7;
+  font-style: normal;
+}
+
+.faq-answer {
+  overflow-wrap: break-word;
+}
+
+/* Privacy Policy and Terms of Use */
+.legalcontent, .legalcontent h5, .legalcontent h6, .legalcontent p, .legalcontent span{
+  font-size: 0.9375rem !important;
+}
+
+.legalcontent .lc-heading {
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
+  margin-bottom: 1rem;
+}
+
+.legalcontent .lc-subheading {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.legalcontent .lc-bulletheading {
+  font-style: italic;
+}
+
+.legalcontent .lc-paratext, .legalcontent .lc-list .lc-listitem {
+  line-height: 1.8;
+}
+
+.legalcontent .lc-keyword {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.legalcontent .lc-list {
+  padding-inline-start: 60px;
+}
+
+.legalcontent .lc-agreement {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.legalcontent .lc-level1list .number{
+  margin-right: 2rem;
+}
+
+.legalcontent .lc-level1list .heading {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.legalcontent .lc-level2list .number{
+  margin-left: 2.7rem;
+  margin-right: 2rem;
+}
+
+.legalcontent .lc-level2list .heading {
+  text-decoration: underline;
+}
+
+.legalcontent .lc-level3list .number{
+  margin-left: 4.4rem;
+  margin-right: 2rem;
+}
+
+.legalcontent .lc-section {
+  text-decoration: underline;
+}

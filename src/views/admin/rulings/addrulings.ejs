@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("../partials/commonhead") %>
+</head>
+
+<body>
+  <%- include ("../partials/header") %>
+  <%- include ("../../commonpartials/stbutton") %>
+  <div class="body-container">
+    <%- include ("../partials/sidebar") %>
+    <div class="page-body">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="home-page-heading">Add Rulings</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5 mx-auto">
+            <h4 class="form-heading">Enter Rulings Information:</h4>
+
+            <%- include ("../partials/messages") %>
+
+            <form action="/admin/rulings/addrulings" method="POST" encType="multipart/form-data">
+              <div class="form-group">
+                <label for="">Date <span class="text-danger">*</span></label>
+                <% var now = new Date %>
+                <% var yyyy = now.getFullYear() %>
+                <% var MM = now.getMonth() + 1 %>
+                <% var dd = now.getDate() %>
+                <% if (dd < 10) { dd = '0' + dd } %>
+                <% if (MM < 10) { MM = '0' + MM } %>
+                <% var today = yyyy + '-' + MM + '-' + dd %>
+                <input type="date" name='date' class="form-control" required value="<%= typeof rulings != 'undefined' ? rulings.date : today %>">
+              </div>
+              <div class="form-group">
+                <label for="">Judge <span class="text-danger">*</span></label>
+                <select name="judge" id="" class="form-control">
+                  <% for (var i = 0; i < judges.length; i++) { %>
+                  <option value="<%= judges[i]._id %>">
+                    <%= judges[i].name %>
+                  </option>
+                  <% } %>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="">Courthouse <span class="text-danger">*</span></label>
+                <select name="courthouse" id="select-courthouses" class="form-control">
+                  <% for (var i = 0; i < courthouses.length; i++) { %>
+                  <option value="<%= courthouses[i]._id %>">
+                    <%= courthouses[i].name %>
+                  </option>
+                  <% } %>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="">Department <span class="text-danger">*</span></label>
+                <select name="department" id="select-departments" class="form-control">
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="">Ruling file <span class="text-danger">*</span></label>
+                <input type="file" name="rulingsfile" id="" class="form-control" required accept=".html, .htm">
+              </div>
+              <button type="submit" class="btn btn-success btn-block mt-2">
+                <i class="fas fa-plus-circle    "></i>
+                Add Rulings
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include ("../partials/footer") %>
+  <%- include ("../partials/commonscripts") %>
+  
+<script>
+    let courthouses = eval(<%- JSON.stringify(courthouses) %>)
+    let departments = eval(<%- JSON.stringify(departments) %>)
+    
+    $('#select-courthouses').change(function () {
+      $('#select-departments').html('')
+      for (let i = 0; i < departments.length; i++) {
+        if (departments[i].courthouse.toString() == $(this).val()){
+          $('#select-departments').append('<option value="'+ departments[i]._id +'">'+ departments[i].name +'</option>')
+        }
+      }
+    })
+
+    $('#select-courthouses').change();
+  </script>
+</body>
+
+</html>

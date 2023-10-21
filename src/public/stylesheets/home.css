@@ -1,0 +1,65 @@
+.home-heading {
+  font-weight: 400;
+  font-size: 3em;
+}
+
+.home-text {
+  line-height: 2;
+  text-align: justify;
+}
+
+.home-page-logo {
+  max-height: 120px;
+}
+
+#featured-section {
+  border-bottom: 1px solid #dddddd;
+  border-top: 1px solid #dddddd;
+  padding: 10px 0;
+  margin-bottom: 1em;
+}
+
+.featured {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 ;
+}
+
+.featured-title {
+  font-size: 1.2em;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.featured-link {
+  margin: 10px;
+}
+
+.featured-image {
+  height: 50px;
+  -webkit-filter: invert(50%) brightness(50%) contrast(100%);
+  filter: invert(50%) brightness(50%) contrast(100%);
+  transition: 200ms all ease;
+}
+
+.featured-image:hover {
+  -webkit-filter: invert(50%) brightness(15%) contrast(100%);
+  filter: invert(50%) brightness(15%) contrast(100%);
+}
+
+@media screen and (max-width: 576px) {
+  .home-page-logo {
+    width: 100%;
+  }
+  .home-heading {
+    font-size: 2rem;
+  }
+
+  .home-caption {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>rulings.law - <%= judgeProfile.alternateName %> Judicial Profile - Preview</title>
+  <%- include ("../commonpartials/commonhead") %>
+  <link rel="stylesheet" href="/stylesheets/rulings.css">
+</head>
+
+<body>
+  <div class="body-container">
+    <%- include ("partials/header") %>
+    <%- include ("partials/sidebar") %>
+    <%- include ("../commonpartials/stbutton") %>
+    <% if (judgeProfile) { %>
+    <div class="page-body results-page">
+      <div class="container">
+        <div class="row">
+          <div class="col mx-auto">
+
+          </div>
+        </div>
+
+        <!-- Title -->
+        <div class="row my-2">
+          <div class="col">
+            <h2 class="home-page-heading"><%= judgeProfile.alternateName %> Judicial Profile</h2>
+          </div>
+        </div>
+
+        <!-- Judge Profile -->
+        <div class="row">
+          <div class="col">
+            <%- judgeProfile.profile %>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- Header -->
+        <div class="row header-row">
+          <div class="col">
+            <p class="mb-0">
+              <em>Found <strong>XXX</strong> Rulings</em>
+            </p>
+          </div>
+          <div class="col ml-auto text-right">
+            <p class="mb-0">
+              <em>Showing <strong>XX</strong> Rulings per Page</em>
+            </p>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="results-container mt-4">
+          <div class="results-header">
+            <span class="entry-number">
+              #
+            </span>
+            <span class="entry-casenumber">
+              Case Number
+            </span>
+            <span class="entry-date">
+              Date
+            </span>
+            <span class="entry-judge">
+              Judge
+            </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col mx-auto">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+    <%- include ("partials/footer") %>
+    <%- include ("../commonpartials/commonscripts") %>
+</body>
+
+</html>

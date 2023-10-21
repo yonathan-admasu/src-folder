@@ -1,0 +1,31 @@
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 330px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 4; /* Stay on top */
+  top: 100px; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden;
+  padding: 15px;
+  box-shadow: -3px 0px 8px black;
+  transition: 300ms all ease;
+  /* overflow-y: auto; */
+}
+
+.sidenav .heading {
+  font-weight: 500;
+  font-size: 1.2em;
+  text-align: center;
+  /* border-bottom: 1px dashed #ced4da; */
+  padding-bottom: 0.6em;
+}
+
+@media screen and (max-width: 576px) {
+  .sidenav {
+    left: -330px;
+  }
+
+  .sidenav .sidebar-burgermenu {
+    display: none;
+  }
+}

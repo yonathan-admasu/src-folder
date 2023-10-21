@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ("../partials/commonhead") %>
+</head>
+<body>
+  <%- include ("../partials/header") %>
+  <%- include ("../../commonpartials/stbutton") %>
+  <div class="body-container">
+    <%- include ("../partials/sidebar") %>
+    <div class="page-body">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+              <h2 class="home-page-heading">Edit Rulings</h2>
+            </div>
+          </div>
+          <%- include ("../partials/messages") %>
+          <div class="row">
+            <div class="col-md-5 mx-auto">
+                <h4 class="form-heading">Edit Ruling Information:</h4>
+                <form action="/admin/rulings/<%= ruling._id %>/edit" method="POST">
+                  <div class="form-group">
+                    <label for="">Date <span class="text-danger">*</span></label>
+                    <input type="date" name="hearingdate" id="input-hearingdate" class="form-control" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Case Number <span class="text-danger">*</span></label>
+                    <input type="text" name="casenumber" id="input-casenumber" class="form-control" value=<%= ruling.caseNumber %> required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Judge <span class="text-danger">*</span></label>
+                    <select name="judge" id="select-judges" class="form-control">
+                      <% for (let i=0; i < judges.length; i++) { %>
+                        <% if (judges[i].name != "Unassigned") { %>
+                          <option value="<%= judges[i]._id %>"><%= judges[i].name %></option>
+                        <% } %>
+                      <% } %>
+                    </select>
+                  </div>
+      
+                  <div class="form-group">
+                    <label for="">Courthouse <span class="text-danger">*</span></label>
+                    <select name="courthouse" id="select-courthouses" class="form-control">
+                      <% for (var a = 0; a < courthouses.length; a++) { %>
+                        <option value="<%= courthouses[a]._id %>"><%= courthouses[a].name %></option>
+                      <% } %>
+                    </select>
+                  </div>
+      
+                  <div class="form-group">
+                    <label for="">Department <span class="text-danger">*</span></label>
+                    <select name="department" id="select-departments" class="form-control">
+                    </select>
+                  </div>
+      
+                  <div class="form-group">
+                    <label for="">Verified <span class="text-danger">*</span></label>
+                    <input type="checkbox" name="verified" id="verified" class="form-control" style="width:25px;" <%= ruling.verified ? 'checked' : '' %>>
+                  </div>
+      
+                  <button type="submit" class="btn btn-success mt-2">
+                    <i class="fas fa-save    "></i>
+                    Save Changes
+                  </button>
+                  <a class="btn btn-info mt-2 btn-cancel" href="#">Cancel</a>
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <%- include ("../partials/footer") %>
+  <%- include ("../partials/commonscripts") %>
+</body>
+</html>
+
+
+
+
+<script>
+  $(document).ready(function () {
+    var ruling = eval(<%- JSON.stringify(ruling) %>)
+    var courthouses = eval(<%- JSON.stringify(courthouses) %>)
+    var departments = eval(<%- JSON.stringify(departments) %>)
+
+    $('.btn-cancel').click(function (e) { 
+      e.preventDefault();
+      window.history.back();
+    });
+    
+    $('#select-courthouses').change(function () {
+      $('#select-departments').html('')
+      for (let i = 0; i < departments.length; i++) {
+        if (departments[i].courthouse.toString() == $(this).val()){
+          $('#select-departments').append('<option value="'+ departments[i]._id +'">'+ departments[i].name +'</option>')
+        }
+      }
+    })
+
+    $('#select-courthouses').val(ruling.department.courthouse._id.toString());
+    $('#select-judges').val(ruling.judge._id.toString());
+    $('#select-courthouses').change();
+    $('#select-departments').val(ruling.department._id.toString());
+    const rulingDate = `${ruling.year}-${pad(ruling.month)}-${pad(ruling.day)}`;
+    $('#input-hearingdate').val(rulingDate);
+
+    function pad(d) {
+      return (d < 10) ? '0' + d.toString() : d.toString();
+    }
+  });
+
+  </script>

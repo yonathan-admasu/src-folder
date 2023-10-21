@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("../partials/commonhead") %>
+  <script src="https://cdn.tiny.cloud/1/rzgxfp57oz5f4kncthxo27b19a3y0nqdk7izava22ocyp8au/tinymce/5/tinymce.min.js">
+  </script>
+  <script>
+    tinymce.init({
+      selector: 'textarea#profile',
+      plugins: "print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons",
+      toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+      menubar: 'file edit view insert format tools table help',
+      contextmenu: "link image imagetools table",
+      height: 600,
+    });
+  </script>
+</head>
+
+<body>
+  <%- include ("../partials/header") %>
+  <%- include ("../../commonpartials/stbutton") %>
+  <div class="body-container">
+    <%- include ("../partials/sidebar") %>
+    <div class="page-body">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="home-page-heading">Add Judge Profile</h2>
+            <%- include ("../partials/messages") %>
+          </div>
+        </div>
+
+        <form action="/admin/pages/add-judge-profile" method="POST" id="add-judge-profile-form">
+          <div class="card admin-card">
+            <div class="card-header">
+              <span>Enter Judge Details</span>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="judgeName">Judge</label>
+                    <select name="judge" id="judgeName" class="form-control" required>
+                      <option value="">Select Judge</option>
+                      <% for (let i = 0; i < judges.length; i++) { %>
+                        <option value="<%= judges[i].id %>"><%= judges[i].name %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="alternateName">Name to Display on Website</label>
+                    <input type="text" class="form-control" id="alternateName" required name="alternateName">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="slug">Slug (for url)</label>
+                    <input type="text" class="form-control" id="slug" required name="slug">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <textarea name="profile" id="profile"></textarea>
+                </div>
+              </div>
+              <input type="text" name="published" value="false" class="d-none" id="input-published">
+
+            </div>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-md-3 mx-auto">
+                  <button type="submit" class="btn btn-secondary btn-block mt-2" id="btn-save">
+                    <i class="fas fa-save"></i>
+                    &nbsp; Save Draft
+                  </button>
+                </div>
+                <div class="col-md-3 mx-auto">
+                  <button class="btn btn-primary btn-block mt-2" id="btn-save-publish">
+                    <i class="fas fa-upload"></i>
+                    &nbsp; Save & Publish
+                  </button>
+                </div>
+                <div class="col-md-3 mx-auto">
+                  <button class="btn btn-success btn-block mt-2" id="btn-preview">
+                    <i class="fas fa-eye"></i>
+                    &nbsp; Preview
+                  </button>
+                </div>
+                <div class="col-md-3 mx-auto">
+                  <a class="btn btn-secondary btn-block mt-2" href="/admin/pages/judge-profiles">
+                    <i class="fas fa-window-close"></i>
+                    &nbsp; Cancel
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <%- include ("../partials/footer") %>
+  <%- include ("../partials/commonscripts") %>
+
+  <script>
+    $('select#judgeName').change(function (e) { 
+      e.preventDefault();
+      const judgeName = $('select#judgeName > option:selected').text();
+      if (judgeName != 'Select Judge') {
+        $('input#alternateName').val(judgeName.trim());
+        $('input#slug').val(judgeName.trim().replace(/[,\.]/gi, '').trim().replace(/\s+/gi, '-').trim().toLowerCase())
+      } else {
+        $('input#alternateName').val('');
+        $('input#slug').val('')
+      }
+    });
+
+    $('input#alternateName').keyup(function (e) { 
+      e.preventDefault();
+      const judgeName = $(this).val();
+      $('input#slug').val(judgeName.trim().replace(/[,\.]/gi, '').trim().replace(/\s+/gi, '-').trim().toLowerCase())
+    });
+
+    $('#btn-save-publish').click(function (e) { 
+      e.preventDefault();
+      $('#input-published').val('true');
+      $('#add-judge-profile-form').submit();
+    });
+
+    $('#btn-preview').click(function (e) { 
+      e.preventDefault();
+      let data = {};
+      data.judge = $('select#judgeName').val();
+      data.alternateName = $('input#alternateName').val();
+      data.slug = $('input#slug').val();
+      data.profile = tinymce.activeEditor.getContent();
+      if (data.judge !== '' && data.alternateName !== '' && data.slug !== '' && data.profile !== '') {
+        $.post('/admin/pages/judge-profile-preview', data, function(res, status) {
+          console.log(res, status);
+          var w = window.open('about:blank');
+          w.document.open();
+          w.document.write(res);
+        })
+      }
+    });
+  </script>
+</body>
+
+</html>

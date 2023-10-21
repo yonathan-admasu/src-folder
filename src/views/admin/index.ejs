@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("partials/commonhead") %>
+</head>
+
+<body>
+  <%- include ("partials/header") %>
+  <%- include ("../commonpartials/stbutton") %>
+  <div class="body-container">
+    <%- include ("partials/sidebar") %>
+    <div class="page-body">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="home-page-heading">Welcome to Administrator Dashboard</h2>
+            <%- include ("partials/messages") %>
+          </div>
+        </div>
+        <div class="card admin-card">
+          <div class="card-header">
+            <i class="material-icons">
+              memory
+            </i> Manage Scrape Database
+          </div>
+          <div class="card-body">
+            <div class="row text-center">
+              <div class="col-md-3 text-center my-2">
+                <a href="/admin/botslogs" class="btn btn-secondary my-2 main-page-buttons">
+                  <i class="fas fa-history"></i>
+                  Bots Logs
+                </a>
+              </div>
+              <div class="col-md-3 text-center my-2">
+                <a href="/admin/dbstats" class="btn btn-primary my-2 main-page-buttons">
+                  <i class="fas fa-info-circle    "></i>
+                  Database Stats
+                </a>
+              </div>
+              <div class="col-md-3 text-center my-2">
+                <a href="/admin/rulings" class="btn btn-secondary my-2 main-page-buttons">
+                  <i class="fas fa-school    "></i>
+                  Rulings
+                </a>
+              </div>
+              <div class="col-md-3 text-center my-2">
+                <a href="/admin/courthouses" class="btn btn-success my-2 main-page-buttons">
+                  <i class="fas fa-school    "></i>
+                  Courthouses
+                </a>
+              </div>
+              <div class="col-md-3 text-center my-2">
+                <a href="/admin/judges" class="btn btn-warning my-2 main-page-buttons">
+                  <i class="fas fa-users    "></i>
+                  Judges
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card admin-card">
+          <div class="card-header">
+            <i class="material-icons">
+              view_comfy
+            </i> Manage Pages
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3 text-center my-2">
+                <a href="/admin/pages/faq" class="btn btn-primary btn-block">
+                  <i class="fas fa-question    "></i>
+                  FAQ
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card admin-card">
+          <div class="card-header">
+            <i class="material-icons">
+              face
+            </i> Manage Users
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3 text-center my-2">
+                <a href="/admin/admins" class="btn btn-primary btn-block">
+                  <i class="fas fa-user"></i>
+                  Admins
+                </a>
+              </div>
+              <div class="col-md-3 text-center my-2">
+                <a href="/admin/subscribers" class="btn btn-success btn-block">
+                  <i class="fas fa-users"></i>
+                  Subscribers
+                </a>
+              </div>
+              <div class="col-md-3 text-center my-2">
+                <a href="/admin/messages" class="btn btn-warning btn-block">
+                  <i class="fas fa-envelope-open-text"></i>
+                  Messages
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card admin-card">
+          <div class="card-header">
+            <i class="material-icons">
+              account_box
+            </i> Manage Administrator Account
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3 text-center my-2">
+                <a href="/admin/editprofile" class="btn btn-primary btn-block">
+                  <i class="fas fa-user    "></i>
+                  Edit Admin Profile
+                </a>
+              </div>
+              <div class="col-md-3 text-center my-2">
+                <a href="/admin/changepassword" class="btn btn-success btn-block">
+                  <i class="fas fa-user-lock    "></i>
+                  Change Password
+                </a>
+              </div>
+              <div class="col-md-3 text-center my-2">
+                <a href="/admin/logout" class="btn btn-danger btn-block">
+                  <i class="fas fa-user-alt-slash"></i>
+                  Logout
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <%- include ("partials/footer") %>
+  <%- include ("partials/commonscripts") %>
+</body>
+
+</html>

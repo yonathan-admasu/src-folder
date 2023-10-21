@@ -1,0 +1,67 @@
+<div class="subscription-container">
+  <div class="subscription-box">
+    <div class="close-button" onclick="subscriptionPopupClose()">
+      <i class="fas fa-times    "></i>
+    </div>
+    <div class="container subscription-form">
+      <p class="lead text-center">Simply fill the form below to sign up for updates</p>
+      <div class="alert alert-danger alert-dismissible fade show subscribe-error" role="alert">
+        <span class="error-text"></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group with-icon">
+            <label for="firstname">First Name</label>
+            <input required type="name" id="firstname" name="firstname" class="form-control" value="">
+            <i class="fas fa-user input-icon"></i>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group with-icon">
+            <label for="lastname">Last Name</label>
+            <input required type="name" id="lastname" name="lastname" class="form-control" value="">
+            <i class="fas fa-user input-icon"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group with-icon">
+            <label for="email">Email</label>
+            <input required type="email" id="email" name="email" class="form-control" value="">
+            <i class="fas fa-envelope input-icon"></i>
+          </div>
+        </div>
+      </div>
+      <!-- <hr> -->
+      <div class="row">
+        <div class="col text-center">
+          <button class="btn rlbtn rlbtn-primary mr-3 btn-subscribe">
+            <i class="fas fa-check-circle    "></i>
+            Sign Up
+          </button>
+          <button class="btn btn-outline-dark" onclick="subscriptionPopupClose()">
+            <i class="fas fa-times-circle    "></i>
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container subscription-success">
+      <p class="lead text-center">Thank you for signing up for updates</p>
+      <div class="row">
+        <div class="col text-center">
+            <button class="btn btn-outline-dark" onclick="subscriptionPopupClose()">
+                <i class="fas fa-times-circle    "></i>
+                Close
+              </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

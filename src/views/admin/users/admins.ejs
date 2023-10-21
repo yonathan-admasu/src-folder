@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("../partials/commonhead") %>
+</head>
+
+<body>
+  <%- include ("../partials/header") %>
+  <%- include ("../../commonpartials/stbutton") %>
+  <div class="body-container">
+    <%- include ("../partials/sidebar") %>
+    <div class="page-body">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="home-page-heading">Manage Administrators</h2>
+            <%- include ("../partials/messages") %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <a href="/admin/admins/addadmin" class="btn btn-primary my-2 main-page-buttons" id="btn-addadmin">
+              <i class="fas fa-plus-circle    "></i>
+              Add New Admin
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <table class="table table-striped users-table">
+              <thead class="">
+                <tr>
+                  <th>#</th>
+                  <th>Email</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th class="text-center">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (var i = 0; i < admins.length; i++) { %>
+                <tr>
+                  <td>
+                    <%= i + 1 %>
+                  </td>
+                  <td>
+                    <%= admins[i].email %>
+                  </td>
+                  <td>
+                    <%= admins[i].firstName %>
+                  </td>
+                  <td>
+                    <%= admins[i].lastName %>
+                  </td>
+                  <td class="text-center">
+                    <% if(admins[i].email != user.email) {%>
+                      <a href="" class="text-danger btn-userdelete" user="<%= admins[i]._id %>">
+                        <i class="fas fa-trash"></i>
+                      </a>
+                    <% } %>
+                  </td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include ("../partials/footer") %>
+  <%- include ("../partials/commonscripts") %>
+
+  <script>
+    $('.btn-userdelete').click(function (e) {
+      e.preventDefault();
+      var url = '/admin/admins/' + $(this).attr('user') + '/delete'
+      $.ajax({
+        type: "post",
+        url: url,
+        success: function (response) {
+          document.location.reload(true)
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

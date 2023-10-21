@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("../commonpartials/commonhead") %>
+</head>
+
+<body>
+  <div class="container body-container welcome-body-container">
+    <div class="row">
+      <div class="col-md-6 m-auto">
+        <h1>
+          <a href="/" class="rllink-primary">
+            <img src="/images/logo.png" alt="rulings.law - the free, searchable database of California tentative rulings"
+              class="welcome-logo" title="rulings.law - the free, searchable database of California tentative rulings">
+          </a>
+        </h1>
+        <div class="card-body">
+          <h1 class="text-center mb-3 rltext-primary">
+            <i class="fas fa-user-plus    "></i> Register
+          </h1>
+          <%- include ("../commonpartials/messages") %>
+          <form action="/users/register" method="POST">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group with-icon">
+                  <label for="fname">First Name</label>
+                  <input type="name" id="fname" name="fname" class="form-control" value="<%= typeof fname != 'undefined' ? fname : '' %>" />
+                  <i class="fas fa-user input-icon"></i>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group with-icon">
+                  <label for="fname">Last Name</label>
+                  <input type="name" id="lname" name="lname" class="form-control" value="<%= typeof lname != 'undefined' ? lname : '' %>" />
+                  <i class="fas fa-user input-icon"></i>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group with-icon">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" class="form-control" value="<%= typeof email != 'undefined' ? email : '' %>" />
+              <i class="fas fa-envelope input-icon"></i>
+            </div>
+
+            <div class="form-group with-icon">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" class="form-control" value="<%= typeof password != 'undefined' ? password : '' %>" />
+              <i class="fas fa-lock input-icon"></i>
+            </div>
+            <div class="form-group with-icon">
+              <label for="password2">Confirm Password</label>
+              <input type="password" id="password2" name="password2" class="form-control" value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
+              <i class="fas fa-lock input-icon"></i>
+            </div>
+            <button type="submit" class="btn rlbtn rlbtn-primary btn-block">
+              Register
+            </button>
+          </form>
+          <p class="mt-4">Have An Account? <a href="/users/login" class="rllink-primary">Login Here</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include ("partials/footer") %>
+  <%- include ("../commonpartials/commonscripts") %>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("../partials/commonhead") %>
+</head>
+
+<body>
+  <%- include ("../partials/header") %>
+  <%- include ("../../commonpartials/stbutton") %>
+  <div class="body-container">
+    <%- include ("../partials/sidebar") %>
+    <div class="page-body">
+        <div class="container">
+            <div class="row">
+              <div class="col">
+                <h2 class="home-page-heading">Messages</h2>
+                <%- include ("../partials/messages") %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <% if (contactus.length > 0) { %>
+                <table class="table table-striped users-table">
+                  <thead class="">
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Subject</th>
+                      <th>Date/Time</th>
+                      <th>Message</th>
+                      <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <% for (var i = 0; i < contactus.length; i++) { %>
+                      <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= contactus[i].name %></td>
+                        <td><%= contactus[i].email %></td>
+                        <td><%= contactus[i].subject %></td>
+                        <td class="createdAt"><%= contactus[i].createdat %></td>
+                        <td><%= contactus[i].message %></td>
+                        <td><a href="/admin/deletemessage/<%= contactus[i]._id %>" class="text-danger"><i class="fas fa-trash"></i></a></td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                </table>
+                <% } else { %>
+                  <p>No Messages found</p>
+                <% } %>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+  <%- include ("../partials/footer") %>
+  <%- include ("../partials/commonscripts") %>
+
+  <script src="/javascripts/moment.min.js"></script>
+  <script>
+    $('.createdAt').each(function (index, element) {
+      $(this).text(moment($(this).text()).format('MM/DD/YYYY HH:mm'));
+    });
+
+    $('.btn-userdelete').click(function (e) { 
+      e.preventDefault();
+      var url = '/admin/users/' + $(this).attr('user') + '/delete'
+      $.ajax({
+        type: "post",
+        url: url,
+        success: function (response) {
+          document.location.reload(true)
+        }
+      });
+    });
+    
+    $('.select-allowcopy').change(function (e) { 
+      e.preventDefault();
+      var url = '/admin/users/' + $(this).attr('user') + '/allowcopy/' + $(this).val()
+      $.ajax({
+        type: "post",
+        url: url,
+        success: function (response) {
+          // console.log('Changed');
+          document.location.reload(true)
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("../partials/commonhead") %>
+  </head>
+  <body>
+    <%- include ("../partials/header") %> <%- include ("../../commonpartials/stbutton") %>
+    <div class="body-container">
+      <%- include ("../partials/sidebar") %>
+      <div class="page-body">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <h2 class="home-page-heading">Department <%= department.name %>'s Rulings</h2>
+              <%- include ("../partials/messages") %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="lead"><strong><%= rulings.length %></strong> Rulings</p>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <% for (let i = 0; i < rulings.length; i++) { %>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
+              <div class="card">
+                <div class="judgename">
+                  <a style="display: block" href="/admin/rulings/show/<%= rulings[i]._id %>" class="text-dark">
+                    <%= rulings[i].date %> - <%= rulings[i].caseNumber %>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+          <div class="row my-3">
+            <div class="col text-center">
+              <a href="/admin/courthouses" class="btn btn-success px-5 back-button"
+                ><i class="fas fa-arrow-circle-left"></i>&nbsp; Back</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include ("../partials/footer") %> <%- include ("../partials/commonscripts") %>
+  </body>
+</html>
